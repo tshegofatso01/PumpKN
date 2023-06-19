@@ -1,22 +1,21 @@
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
-
 builder.Services.AddControllersWithViews();
 
-
+// Add Swagger services
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
+// Add HttpClient service (if needed)
 builder.Services.AddHttpClient();
-
 
 var app = builder.Build();
 
 app.UseCors(builder => builder
-   .AllowAnyOrigin()
-   .AllowAnyMethod()
-   .AllowAnyHeader());
+    .AllowAnyOrigin()
+    .AllowAnyMethod()
+    .AllowAnyHeader());
 
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
@@ -29,6 +28,12 @@ app.UseHttpsRedirection();
 app.UseStaticFiles();
 app.UseRouting();
 
+// Enable Swagger UI
+app.UseSwagger();
+app.UseSwaggerUI(c =>
+{
+    c.SwaggerEndpoint("/swagger/v1/swagger.json", "Your API Title"); // Replace "v1" and "Your API Title" with appropriate values
+});
 
 app.MapControllerRoute(
     name: "default",

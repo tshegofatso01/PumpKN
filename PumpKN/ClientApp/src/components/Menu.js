@@ -43,7 +43,7 @@ export class Menu extends Component {
     //     `https://api.punkapi.com/v2/beers?beer_name=${searchTerm}`
     //   );
       const response = await fetch(
-        `https://localhost:7297/search/?beer_name=${searchTerm}`
+        `/search/?beer_name=${searchTerm}`
       );
       const data = await response.json();
 
@@ -163,7 +163,7 @@ export class Menu extends Component {
     // );
 
     const response = await fetch(
-        `https://localhost:7297/beer/menu?currentPage=${currentPage}&itemsPerPage=${itemsPerPage}`
+        `/beer/menu?currentPage=${currentPage}&itemsPerPage=${itemsPerPage}`
       );
     const data = await response.json();
     this.setState({ beers: data, loading: false });

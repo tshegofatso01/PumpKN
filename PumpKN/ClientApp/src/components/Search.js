@@ -22,7 +22,7 @@ export class Search extends Component {
     //     `https://api.punkapi.com/v2/beers?beer_name=${searchTerm}`
     //   );
       const response = await fetch(
-        `https://localhost:7297/search/?beer_name=${searchTerm}`
+        `/search/?beer_name=${searchTerm}`
       );
       const data = await response.json();
 

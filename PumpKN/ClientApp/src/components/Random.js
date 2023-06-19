@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { BeerDetailsInfo } from './BeerDetails';
 
 export class Random extends Component {
   constructor(props) {
@@ -11,7 +12,7 @@ export class Random extends Component {
 
     try {
     //   const response = await fetch('https://api.punkapi.com/v2/beers/random');
-      const response = await fetch('https://localhost:7297/beer/random');
+      const response = await fetch('/beer/random');
       const data = await response.json();
       const randomBeer = data[0];
       this.setState({ beer: randomBeer, loading: false });
@@ -28,6 +29,7 @@ export class Random extends Component {
         <p>{beer.tagline}</p>
         <p>Description: {beer.description}</p>
         <img src={beer.image_url} alt={beer.name} width="200" height="200" />
+        <BeerDetailsInfo beer={beer} />
       </div>
     );
   }
